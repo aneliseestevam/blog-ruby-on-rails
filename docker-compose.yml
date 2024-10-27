@@ -2,11 +2,7 @@ version: '3'
 
 services:
   db:
-    container_name: db
-    networks:
-      - app-network
     image: postgres:17.0
-    restart: always
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
@@ -23,11 +19,3 @@ services:
     command: ["rails", "s", "-b", "0.0.0.0"]
     depends_on:
       - db
-    links:
-      - db:db
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
